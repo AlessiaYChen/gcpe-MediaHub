@@ -1,0 +1,85 @@
+.container {
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.controls {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchAndFilterContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchInput {
+    min-width: 300px;
+}
+
+.requestTable {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.requestTable th, .requestTable td {
+    border-bottom: 1px solid #ddd;
+    padding: 12px 8px;
+    text-align: left;
+    height: 30px;
+    line-height: 24px;
+}
+
+.requestTable th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.requestTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+.paginationControls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.paginationLink {
+    color: #0078d4;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.paginationLink:hover {
+    text-decoration: underline;
+}
+
+.paginationLinkDisabled {
+    color: #8a8886;
+    cursor: default;
+}
+
+.pageLink,
+.activePage {
+    border: none !important;
+}
+
+.activePage {
+    background-color: #0078d4;
+    color: white;
+}

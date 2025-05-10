@@ -1,0 +1,6 @@
+@MediaHubExplore.Backend_HostAddress = http://localhost:5020
+
+GET {{MediaHubExplore.Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

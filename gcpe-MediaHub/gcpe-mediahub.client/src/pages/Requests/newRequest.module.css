@@ -1,0 +1,59 @@
+.container {
+    padding: 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Make all form fields the same width */
+.form > div {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Ensure the field with date input container matches other fields */
+.form > div > div {
+    width: 100%;
+    max-width: 600px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+h1 {
+    margin-bottom: 16px;
+}
+
+.dateInput {
+    cursor: default;
+    background-color: var(--colorNeutralBackground1);
+    width: 100% !important;
+}
+
+.hiddenDateInput {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}

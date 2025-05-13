@@ -1,19 +1,25 @@
 const BASE_URL = 'http://localhost:5020/api';
 
+export type RequestStatus = 'New' | 'Pending' | 'Rejected' | 'Reviewed' | 'Scheduled' | 'Unavailable' | 'Approved' | 'Completed';
+export type RequestType = 'Information' | 'Interview' | 'Scrum/Halls';
+export type RequestResolution = 'DeclinedToComment' | 'ProvidedBackgrounder' | 'ProvidedScrumAudio' | 'ProvideStatement' | 
+                              'ReferredToMediaAvail' | 'ReferredToThirdParty' | 'ReporterDropped' | 'ScheduledInterview' | 
+                              'Unavailable' | 'Other';
+export type Ministry = 'ENV' | 'FIN' | 'FOR' | 'HLTH' | 'HOUS';
+
 export interface MediaRequest {
+    isPressGallery: boolean;
     requestId: string;
-    status: 'New' | 'Pending' | 'Rejected' | 'Reviewed' | 'Scheduled' | 'Unavailable' | 'Approved' | 'Completed';
+    status: RequestStatus;
     requestTitle: string;
-    requestType: 'Information' | 'Interview' | 'Scrum/Halls';
+    requestType: RequestType;
     requestedBy: string;
     receivedOn: string;
     deadline: string;
     requestDetails: string;
-    requestResolution: 'DeclinedToComment' | 'ProvidedBackgrounder' | 'ProvidedScrumAudio' | 'ProvideStatement' | 
-                      'ReferredToMediaAvail' | 'ReferredToThirdParty' | 'ReporterDropped' | 'ScheduledInterview' | 
-                      'Unavailable' | 'Other';
-    leadMinistry: 'OfficeOfThePremier' | 'AgricultureAndFood' | 'Finance' | 'Health';
-    additionalMinistry: 'OfficeOfThePremier' | 'AgricultureAndFood' | 'Finance' | 'Health';
+    requestResolution: RequestResolution;
+    leadMinistry: Ministry;
+    additionalMinistry?: Ministry;
     assignedTo: string;
     notifiedRecipients: string;
 }

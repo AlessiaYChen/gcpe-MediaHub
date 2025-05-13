@@ -7,44 +7,15 @@ import {
     getPaginationRowModel,
     useReactTable,
 } from '@tanstack/react-table';
-import { Title1, Input, Button, TabList, Tab, Tag, Avatar, Link } from '@fluentui/react-components';
+import { Title1, Input, Button, TabList, Tab, Tag, Avatar, Link, Badge } from '@fluentui/react-components';
+import { PressGalleryBadge } from '../../components/PressGalleryBadge';
 import { Search24Regular, Filter24Regular, Add24Regular } from '@fluentui/react-icons';
 import { useNavigate } from 'react-router-dom';
+import { MediaRequest, RequestStatus, Ministry } from '../../api/apiClient';
+import { requestService } from '../../services/requestService';
 import styles from './requests.module.css';
 
-// Enums based on backend model
-export enum RequestStatus {
-    New,
-    Pending,
-    Rejected,
-    Reviewed,
-    Scheduled,
-    Unavailable,
-    Approved,
-    Completed
-}
-
-export enum LeadMinistry {
-    ENV,
-    FIN,
-    FOR,
-    HLTH,
-    HOUS
-}
-
-// Interface based on backend model
-interface Request {
-    requestId: string;
-    status: RequestStatus;
-    requestTitle: string;
-    requestedBy: string;
-    deadline: string;
-    leadMinistry: LeadMinistry;
-    additionalMinistry: LeadMinistry;
-    assignedTo: string;
-}
-
-const columnHelper = createColumnHelper<Request>();
+const columnHelper = createColumnHelper<MediaRequest>();
 
 const columns = [
     columnHelper.accessor('requestTitle', {
@@ -62,32 +33,34 @@ const columns = [
     columnHelper.accessor('status', {
         header: () => 'Status',
         cell: info => {
-            const statusValue = info.getValue();
-            const statusName = RequestStatus[statusValue] || 'Unknown';
-            return <Tag shape="circular" appearance="outline">{statusName}</Tag>;
+            const status = info.getValue();
+            return <Tag shape="circular" appearance="outline">{status}</Tag>;
         },
         size: 80,
     }),
     columnHelper.accessor('requestedBy', {
         header: () => 'Requested By',
-        cell: info => info.getValue(),
+        cell: info => (
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <span>{info.getValue()}</span>
+                {info.row.original.isPressGallery && <PressGalleryBadge />}
+            </div>
+        ),
         size: 150,
     }),
     columnHelper.accessor('leadMinistry', {
         header: () => 'Lead Ministry',
         cell: info => {
-            const ministryValue = info.getValue();
-            const ministryName = LeadMinistry[ministryValue] || 'Unknown';
-            return <Tag shape="circular" appearance="outline">{ministryName}</Tag>;
+            const ministry = info.getValue();
+            return <Tag shape="circular" appearance="outline">{ministry}</Tag>;
         },
         size: 100,
     }),
     columnHelper.accessor('additionalMinistry', {
         header: () => 'Additional Ministry',
         cell: info => {
-            const ministryValue = info.getValue();
-            const ministryName = LeadMinistry[ministryValue] || 'Unknown';
-            return <Tag shape="circular" appearance="outline">{ministryName}</Tag>;
+            const ministry = info.getValue();
+            return ministry ? <Tag shape="circular" appearance="outline">{ministry}</Tag> : null;
         },
         size: 100,
     }),
@@ -111,17 +84,9 @@ const RequestsPage: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTab, setSelectedTab] = useState<string>("all");
 
-    const fetchRequests = async (): Promise<Request[]> => {
-        const response = await fetch('http://localhost:5020/api/requests');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    };
-
-    const { data: requests = [], isLoading, error } = useQuery<Request[], Error>({
+    const { data: requests = [], isLoading, error } = useQuery<MediaRequest[], Error>({
         queryKey: ['requests'],
-        queryFn: fetchRequests,
+        queryFn: requestService.getRequests,
     });
 
     const filteredRequests = useMemo(() => {
@@ -134,9 +99,9 @@ const RequestsPage: React.FC = () => {
                 request.requestTitle,
                 request.requestedBy,
                 request.assignedTo,
-                RequestStatus[request.status],
-                LeadMinistry[request.leadMinistry],
-                LeadMinistry[request.additionalMinistry],
+                request.status,
+                request.leadMinistry,
+                request.additionalMinistry,
                 new Date(request.deadline).toLocaleDateString()
             ];
             return searchableFields.some(field =>

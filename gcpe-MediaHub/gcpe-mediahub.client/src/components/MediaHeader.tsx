@@ -1,10 +1,11 @@
 import React from 'react';
+import logo from '../assets/logo.svg';
 import styles from './MediaHeader.module.css';
 
 const MediaHeader: React.FC = () => {
   return (
     <header className={styles.header}>
-      <h1></h1>
+      <img src={logo} alt="Logo" style={{ height: '40px', marginRight: '16px' }} />
     </header>
   );
 };

@@ -42,6 +42,7 @@ namespace gcpe_MediaHub.backend.Models
         public Guid RequestId { get; set; }
         public RequestStatus Status { get; set; }
         public string RequestTitle { get; set; }
+        public bool IsPressGallery { get; set; }
         public string RequestType { get; set; }
         public string RequestedBy { get; set; }
         public DateTime ReceivedOn { get; set; }

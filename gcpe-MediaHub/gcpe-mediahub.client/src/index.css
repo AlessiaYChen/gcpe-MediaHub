@@ -73,7 +73,9 @@ button:focus-visible {
   }
 }
 
-
+.fui-TableHeaderCell {
+    font-weight: 900;
+}
 /*header{*/
     /*margin-bottom: 20px;*/
 /*}

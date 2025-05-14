@@ -1,0 +1,32 @@
+[
+  {
+    "Id": "1",
+    "ContactId": "1",
+    "OutletId": "1",
+    "ContactEmail": "someAdress@email.com"
+  },
+  {
+    "Id": "2",
+    "ContactId": "1",
+    "OutletId": "4",
+    "ContactEmail": "someAdress@email.com"
+  },
+  {
+    "Id": "3",
+    "ContactId": "2",
+    "OutletId": "4",
+    "ContactEmail": "someAdress@email.com"
+  },
+  {
+    "Id": "3",
+    "ContactId": "3",
+    "OutletId": "2",
+    "ContactEmail": "someAdress@email.com"
+  },
+  {
+    "Id": "3",
+    "ContactId": "4",
+    "OutletId": "3",
+    "ContactEmail": "someAdress@email.com"
+  }
+]

@@ -5,7 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
     var dataContext = new InMemoryDataContext();
     var mediaContacts = DataLoader.LoadMediaContacts();
-    dataContext.SeedData(mediaContacts);
+    var mediaRequests = DataLoader.LoadMediaRequests();
+    var mediaOutlets = DataLoader.LoadMediaOutlets();
+    var contactOutlets = DataLoader.LoadContactOutlets();
+    dataContext.SeedContactData(mediaContacts);
+    dataContext.SeedRequestData(mediaRequests);
+    dataContext.SeedMediaOutletData(mediaOutlets);
+    dataContext.SeedContactOutletData(contactOutlets);
 
     builder.Services.AddSingleton(dataContext);
 

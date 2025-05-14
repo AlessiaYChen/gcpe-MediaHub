@@ -9,12 +9,16 @@ export class MediaContact {
     phone: String;
     mediaOutlets: MediaOutlet[] = [];
     mediaRequests: MediaRequest[] = [];
+    location: string;
+    lastActive: Date;
 
-    constructor(firstName: string, lastName: string, email: string, phone: string) {
+    constructor(firstName: string, lastName: string, email: string, phone: string, location: string, lastActive: Date) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
         this.phone = phone;
+        this.location = location;
+        this.lastActive = lastActive
     }
 }
 

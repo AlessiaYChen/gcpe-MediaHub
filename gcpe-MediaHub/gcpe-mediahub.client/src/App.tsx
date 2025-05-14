@@ -49,7 +49,7 @@ const router = createBrowserRouter([
 const useStyles = makeStyles({
     root: {
         fontFamily: "BCSans-Regular'",
-    }
+    },
 });
 export const AuthenticationContext = createContext('authentication');
 

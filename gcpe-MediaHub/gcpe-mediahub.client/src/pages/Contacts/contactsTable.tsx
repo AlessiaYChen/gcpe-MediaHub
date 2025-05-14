@@ -19,10 +19,20 @@ import {
     TableCellLayout,
     PresenceBadgeStatus,
     Avatar,
+    Tag,
+    makeStyles,
+    TagGroup,
 } from "@fluentui/react-components";
+
 import MediaContact from "../../models/mediaContact";
 import React from "react";
 
+const useStyles = makeStyles({
+    tableHeader: {
+        fontWeight: "font-weight-bold",
+    }
+    }
+);
 
 const columns = [
     { columnKey: "name", label: "Name" },
@@ -30,7 +40,9 @@ const columns = [
     { columnKey: "mediaOutlets", label: "Outlets" },
     { columnKey: "email", label: "Email" },
     { columnKey: "phone", label: "Phone" },
+    { columnKey: "location", label: "Location" },
     { columnKey: "mediaRequests", label: "Requests" },
+    { columnKey: "lastActive", label: "Last Active" },
 ];
 
 interface TableProps {
@@ -39,15 +51,19 @@ interface TableProps {
 }
 
 const ContactsTable = ({ items }) => {
-
+    const styles = useStyles();
     console.log(items);
+    const dateOptions: Intl.DateTimeFormatOptions = {
+        day: "numeric", month: "numeric", year: "numeric",
+        hour: "2-digit", minute: "2-digit"
+    };
     return (
         <Table arial-label="Default table" style={{ minWidth: "510px" }}>
-          
+
             <TableHeader>
                 <TableRow>
                     {columns.map((column) => (
-                        <TableHeaderCell key={column.columnKey}>
+                        <TableHeaderCell key={column.columnKey} style={{ fontWeight: "900" }}>
                             {column.label}
                         </TableHeaderCell>
                     ))}
@@ -62,9 +78,13 @@ const ContactsTable = ({ items }) => {
                             </TableCellLayout>
                         </TableCell>
                         <TableCell>
-                            <TableCellLayout>
-                                {item.mediaOutlets}
-                            </TableCellLayout>
+                            {item.outlets.map((outlet, index) => (
+                                <TableCellLayout key={index}>
+                                    <TagGroup>
+                                        <Tag shape="circular" appearance="outline"> {outlet} </Tag>
+                                    </TagGroup>
+                                </TableCellLayout>
+                            ))}
                         </TableCell>
                         <TableCell>
                             <TableCellLayout>
@@ -78,7 +98,23 @@ const ContactsTable = ({ items }) => {
                         </TableCell>
                         <TableCell>
                             <TableCellLayout>
-                                {item.mediaRequests}
+                                <TagGroup>
+                                    <Tag shape="circular" appearance="outline">{item.location}</Tag>
+                                </TagGroup>
+                            </TableCellLayout>
+                        </TableCell>
+                        <TableCell>
+                            <TableCellLayout>
+                                {item.requests.length > 0 &&
+                                    <TagGroup>
+                                        <Tag shape="circular" appearance="outline">{item.requests.length} active</Tag> 
+                                    </TagGroup>
+                                }
+                            </TableCellLayout>
+                        </TableCell>
+                        <TableCell>
+                            <TableCellLayout>
+                                {item.lastActive}
                             </TableCellLayout>
                         </TableCell>
                     </TableRow>

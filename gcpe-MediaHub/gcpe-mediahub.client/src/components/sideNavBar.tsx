@@ -1,28 +1,13 @@
-import { DrawerProps, makeStyles, Tooltip } from "@fluentui/react-components";
+import { makeStyles } from "@fluentui/react-components";
 import * as React from "react";
 import {
-    AppItem,
-    Hamburger,
-    NavCategory,
-    NavCategoryItem,
-    NavDivider,
     NavDrawer,
     NavDrawerBody,
     NavDrawerHeader,
-    NavDrawerProps,
     NavItem,
-    NavSectionHeader,
-    NavSubItem,
-    NavSubItemGroup,
 } from "@fluentui/react-nav-preview";
 import {
-    Label,
-    Radio,
-    RadioGroup,
-    Switch,
     tokens,
-    useId,
-    useRestoreFocusTarget,
 } from "@fluentui/react-components";
 /*styling goes here */
 const useStyles = makeStyles({
@@ -49,13 +34,10 @@ const useStyles = makeStyles({
         gridRowGap: tokens.spacingVerticalS,
     },
 });
-type DrawerType = Required<DrawerProps>["type"];
-
-export const SideNavbar = (props: Partial<NavDrawerProps>) => {
+export const SideNavbar = () => {
     const styles = useStyles();
-    const [isOpen, setIsOpen] = React.useState(true);
-    const [selectedLink, setSelectedLink] = React.useState("1");
-    const [enabledLinks, setEnabledLinks] = React.useState(true);
+    const [isOpen] = React.useState(true);
+    const [selectedLink] = React.useState("1");
 
     return (
         <div className={styles.root}>
@@ -79,10 +61,10 @@ export const SideNavbar = (props: Partial<NavDrawerProps>) => {
                     <NavItem href={'./'} value="1">
                         Home
                     </NavItem>
-                    <NavItem href={'./Media'} value="2" onClick={() => setSelectedLink("2")}>
+                    <NavItem href={'./Media'} value="2">
                         Media Requests
                     </NavItem>
-                    <NavItem href={'./Contacts'} value="3" onClick={() => setSelectedLink("3")}>
+                    <NavItem href={'./Contacts'} value="3">
                         Contacts
                     </NavItem>
                 </NavDrawerBody>

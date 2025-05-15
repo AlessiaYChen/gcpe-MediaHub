@@ -1,5 +1,6 @@
-.container {
-    padding: 20px;
+.paginationLink:active {
+    text-decoration: none;
+    color: inherit;
 }
 
 .header {
@@ -80,6 +81,7 @@
 }
 
 .activePage {
-    background-color: #0078d4;
-    color: white;
+    background-color: transparent;
+    color: #0078d4;
+    border-bottom: 3px solid #0078d4;
 }

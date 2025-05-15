@@ -3,8 +3,6 @@ import Layout from '../../components/Layout';
 import ContactsTable from './contactsTable';
 import { useState, useContext, useEffect } from 'react';
 import { AuthenticationContext } from '../../App';
-import React from 'react';
-import MediaContact from '../../models/mediaContact';
 
 //import {
 //    FolderRegular,
@@ -19,7 +17,7 @@ import MediaContact from '../../models/mediaContact';
 
 const MediaContacts = () => {
     const [contacts, setContacts] = useState([]);
-    const keycloak = useContext(AuthenticationContext);
+    useContext(AuthenticationContext);
 
     const fetchContacts = async () => {
         const response = await fetch('mediacontacts');

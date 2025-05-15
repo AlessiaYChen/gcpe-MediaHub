@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
     makeStyles,
     tokens,
-    Tooltip,
 } from '@fluentui/react-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -15,7 +14,6 @@ import {
     NavSubItem,
     NavSubItemGroup,
     OnNavItemSelectData,
-    Hamburger,
 } from '@fluentui/react-nav-preview';
 
 // --- Navigation Item Configuration ---
@@ -88,7 +86,7 @@ const LeftNav = () => {
     }, [location.pathname]);
 
     const handleCategoryToggle = (
-        ev: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
+        _ev: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
         data: OnNavItemSelectData
     ) => {
         const categoryValue = data.categoryValue as string;

@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { useState, useEffect, useCallback } from 'react';
 /* import { initializeKeycloak } from './services/keycloak'; */
 import { createContext } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; // Import React Query client and provider
@@ -16,6 +15,7 @@ import Media from './pages/MediaRequests/requests'; // Note: This is likely Medi
 import Contacs from './pages/Contacts/contacts';   // Note: Typo in variable name, usually Contacts
 import Requests from './pages/Requests/requests.tsx'; // Corrected import for RequestsPage
 import NewRequest from './pages/Requests/newRequest'; // Import new request page
+import RequestsCardView from './pages/Requests/requestsCardView'; // Import card view page
 
 
 const router = createBrowserRouter([
@@ -38,6 +38,24 @@ const router = createBrowserRouter([
             {
                 index: true, // This makes RequestsPage render at /requests
                 element: <Requests />,
+            },
+            {
+                path: 'new',
+                element: <NewRequest />,
+            },
+        ],
+    },
+    {
+        path: '/requests',
+        element: <MediaLayout />,
+        children: [
+            {
+                index: true,
+                element: <Requests />,
+            },
+            {
+                path: 'cardview',
+                element: <RequestsCardView />,
             },
             {
                 path: 'new',

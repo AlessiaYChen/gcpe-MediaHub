@@ -62,13 +62,13 @@ const NewRequestPage: React.FC = () => {
                     <Dropdown
                         placeholder="Select a status"
                         selectedOptions={status ? [status.toString()] : []}
-                        onOptionSelect={(ev, data) => {
+                        onOptionSelect={(_, data) => {
                             if (data.optionValue) {
                                 setStatus(Number(data.optionValue));
                                 setShowValidation(false);
                             }
                         }}
-                        onOpenChange={(e, data) => {
+                        onOpenChange={(_, data) => {
                             if (!data.open) {
                                 setShowValidation(true);
                             }
@@ -90,7 +90,7 @@ const NewRequestPage: React.FC = () => {
                     <Input
                         placeholder="Enter request title"
                         value={requestTitle}
-                        onChange={(e, data) => {
+                        onChange={(_, data) => {
                             setRequestTitle(data.value);
                             if (data.value.trim()) {
                                 setShowValidation(false);
@@ -108,7 +108,7 @@ const NewRequestPage: React.FC = () => {
                     <Input
                         placeholder="Enter name of requester"
                         value={requestedBy}
-                        onChange={(e, data) => {
+                        onChange={(_, data) => {
                             setRequestedBy(data.value);
                             if (data.value.trim()) {
                                 setShowValidation(false);
@@ -190,13 +190,13 @@ const NewRequestPage: React.FC = () => {
                     <Dropdown
                         placeholder="Select a request type"
                         selectedOptions={requestType ? [requestType.toString()] : []}
-                        onOptionSelect={(ev, data) => {
+                        onOptionSelect={(_, data) => {
                             if (data.optionValue) {
                                 setRequestType(Number(data.optionValue));
                                 setShowValidation(false);
                             }
                         }}
-                        onOpenChange={(e, data) => {
+                        onOpenChange={(_, data) => {
                             if (!data.open) {
                                 setShowValidation(true);
                             }
@@ -220,7 +220,7 @@ const NewRequestPage: React.FC = () => {
                         value={requestDetails}
                         resize="vertical"
                         style={{ minHeight: '100px' }}
-                        onChange={(e, data) => {
+                        onChange={(_, data) => {
                             setRequestDetails(data.value);
                             if (data.value.trim()) {
                                 setShowValidation(false);
@@ -240,13 +240,13 @@ const NewRequestPage: React.FC = () => {
                     <Dropdown
                         placeholder="Select lead ministry"
                         selectedOptions={leadMinistry ? [leadMinistry] : []}
-                        onOptionSelect={(ev, data) => {
+                        onOptionSelect={(_, data) => {
                             if (data.optionValue) {
                                 setLeadMinistry(data.optionValue as Ministry);
                                 setShowValidation(false);
                             }
                         }}
-                        onOpenChange={(e, data) => {
+                        onOpenChange={(_, data) => {
                             if (!data.open) {
                                 setShowValidation(true);
                             }
@@ -265,7 +265,7 @@ const NewRequestPage: React.FC = () => {
                     <Dropdown
                         placeholder="Select additional ministry"
                         selectedOptions={additionalMinistry ? [additionalMinistry] : []}
-                        onOptionSelect={(ev, data) => {
+                        onOptionSelect={(_, data) => {
                             if (data.optionValue) {
                                 setAdditionalMinistry(data.optionValue as Ministry);
                             }
@@ -287,7 +287,7 @@ const NewRequestPage: React.FC = () => {
                     <Input
                         placeholder="Enter name of assignee"
                         value={assignedTo}
-                        onChange={(e, data) => {
+                        onChange={(_, data) => {
                             setAssignedTo(data.value);
                             if (data.value.trim()) {
                                 setShowValidation(false);
@@ -302,7 +302,7 @@ const NewRequestPage: React.FC = () => {
                     <Input
                         placeholder="Enter recipient names"
                         value={notifiedRecipients}
-                        onChange={(e, data) => {
+                        onChange={(_, data) => {
                             setNotifiedRecipients(data.value);
                         }}
                     />

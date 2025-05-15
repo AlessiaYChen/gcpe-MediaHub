@@ -7,11 +7,11 @@ import {
     getPaginationRowModel,
     useReactTable,
 } from '@tanstack/react-table';
-import { Title1, Input, Button, TabList, Tab, Tag, Avatar, Link, Badge } from '@fluentui/react-components';
+import { Title1, Input, Button, TabList, Tab, Tag, Avatar, Link } from '@fluentui/react-components';
 import { PressGalleryBadge } from '../../components/PressGalleryBadge';
 import { Search24Regular, Filter24Regular, Add24Regular } from '@fluentui/react-icons';
 import { useNavigate } from 'react-router-dom';
-import { MediaRequest, RequestStatus, Ministry } from '../../api/apiClient';
+import { MediaRequest } from '../../api/apiClient';
 import { requestService } from '../../services/requestService';
 import styles from './requests.module.css';
 
@@ -205,13 +205,14 @@ const RequestsPage: React.FC = () => {
                 )}
 
                 {Array.from({ length: table.getPageCount() }, (_, i) => i + 1).map(page => (
-                    <Button
+                    <Link
                         key={page}
                         onClick={() => table.setPageIndex(page - 1)}
                         className={table.getState().pagination.pageIndex === page - 1 ? styles.activePage : styles.pageLink}
+                        style={{ padding: "0 4px", cursor: "pointer" }}
                     >
                         {page}
-                    </Button>
+                    </Link>
                 ))}
 
                 {table.getCanNextPage() ? (

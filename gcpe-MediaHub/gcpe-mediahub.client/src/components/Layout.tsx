@@ -17,16 +17,17 @@ const useStyles = makeStyles({
 interface LayoutProps {
 	title: String;
 	children: any;
+	selectedNavItem: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ title, children }) => {
+const Layout: React.FC<LayoutProps> = ({ title, children, selectedNavItem }) => {
 	const styles = useStyles();
 
 	return (
 		<div>
 			<Header />
 			<div className={styles.mainContainer} >
-				<SideNavbar />
+				<SideNavbar selectedValue={selectedNavItem} />
 				<main className={ styles.pageContent } >
 				<PageHeading title={title} />
 					{children}

@@ -1,13 +1,28 @@
-import { makeStyles } from "@fluentui/react-components";
+import { DrawerProps, makeStyles, Tooltip } from "@fluentui/react-components";
 import * as React from "react";
 import {
+    AppItem,
+    Hamburger,
+    NavCategory,
+    NavCategoryItem,
+    NavDivider,
     NavDrawer,
     NavDrawerBody,
     NavDrawerHeader,
+    NavDrawerProps,
     NavItem,
+    NavSectionHeader,
+    NavSubItem,
+    NavSubItemGroup,
 } from "@fluentui/react-nav-preview";
 import {
+    Label,
+    Radio,
+    RadioGroup,
+    Switch,
     tokens,
+    useId,
+    useRestoreFocusTarget,
 } from "@fluentui/react-components";
 /*styling goes here */
 const useStyles = makeStyles({
@@ -34,10 +49,19 @@ const useStyles = makeStyles({
         gridRowGap: tokens.spacingVerticalS,
     },
 });
-export const SideNavbar = () => {
+type DrawerType = Required<DrawerProps>["type"];
+
+export const SideNavbar = (props: Partial<NavDrawerProps>) => {
     const styles = useStyles();
-    const [isOpen] = React.useState(true);
-    const [selectedLink] = React.useState("1");
+    const [isOpen, setIsOpen] = React.useState(true);
+   // const [selectedLink, setSelectedLink] = React.useState("1");
+    const [enabledLinks, setEnabledLinks] = React.useState(true);
+
+    //const updateSelectedLink = (input: string) => {
+    //    console.log(input);
+    //    setSelectedLink(input);
+    //}
+
 
     return (
         <div className={styles.root}>
@@ -45,7 +69,8 @@ export const SideNavbar = () => {
                 open={isOpen}
                 type={'inline'}
                 className={styles.nav}
-                selectedValue={selectedLink}
+                selectedValue={props.selectedValue ? props.selectedValue : "1"}
+                defaultSelectedCategoryValue=""
 
             >
                 <NavDrawerHeader>
@@ -83,4 +108,3 @@ export const SideNavbar = () => {
 
 
 export default SideNavbar;
-

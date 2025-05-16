@@ -60,3 +60,4 @@ TestResult.xml
 nunit-*.xml
 /gcpe-MediaHub/.vs
 /gcpe-MediaHub/gcpe-mediahub.client/node_modules
+/backend

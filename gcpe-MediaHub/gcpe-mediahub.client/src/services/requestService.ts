@@ -1,6 +1,10 @@
 import { MediaRequest, RequestStatus, RequestType, RequestResolution, Ministry } from '../api/apiClient';
-import mockData from '../../mock-requests.json';
 import { apiClient } from '../api/apiClient';
+
+async function loadMockData(): Promise<any[]> {
+    const response = await fetch('/data/mock-requests.json');
+    return response.json();
+}
 
 // Type guard to validate the shape of mock data
 function isValidMediaRequest(request: any): request is MediaRequest {
@@ -33,8 +37,9 @@ export const requestService = {
         const useMockData = import.meta.env.VITE_MRM_API === '0';
 
         if (useMockData) {
-            // Return validated mock data
-            return Promise.resolve(validateMockData(mockData));
+            // Load and validate mock data
+            const mockData = await loadMockData();
+            return validateMockData(mockData);
         }
 
         try {
@@ -44,6 +49,7 @@ export const requestService = {
             console.error('Error fetching requests from API:', error);
             // Fallback to mock data if API fails
             console.log('Falling back to mock data');
+            const mockData = await loadMockData();
             return validateMockData(mockData);
         }
     }

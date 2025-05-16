@@ -23,7 +23,7 @@ function Home() {
     return (
         <>
             {typeof keycloak !== 'string' && 'authenticated' in keycloak && keycloak.authenticated && (
-            <Layout title={"Home Page"}>
+            <Layout title={"Home Page"} selectedNavItem="1">
                     <div>
                         <h2>Token Details</h2>
                         {'idTokenParsed' in keycloak && keycloak.idTokenParsed && <p>{`Id token expires at ` + formatDate(keycloak.idTokenParsed.exp)}</p>}

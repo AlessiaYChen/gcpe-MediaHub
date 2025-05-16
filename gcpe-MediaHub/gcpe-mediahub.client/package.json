@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fluentui/react-components": "latest",
-    "@fluentui/react-nav-preview": "latest",
+    "@fluentui/react-components": "9.64.0",
+    "@fluentui/react-nav-preview": "0.13.8",
     "@tanstack/react-query": "^5.75.7",
     "@tanstack/react-table": "^8.21.3",
     "keycloak-js": "^26.0.2",

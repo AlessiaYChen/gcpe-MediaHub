@@ -34,10 +34,14 @@ const useStyles = makeStyles({
         gridRowGap: tokens.spacingVerticalS,
     },
 });
-export const SideNavbar = () => {
+interface SideNavbarProps {
+    selectedValue: string;
+}
+
+export const SideNavbar: React.FC<SideNavbarProps> = ({ selectedValue }) => {
     const styles = useStyles();
     const [isOpen] = React.useState(true);
-    const [selectedLink] = React.useState("1");
+
 
     return (
         <div className={styles.root}>
@@ -45,7 +49,8 @@ export const SideNavbar = () => {
                 open={isOpen}
                 type={'inline'}
                 className={styles.nav}
-                selectedValue={selectedLink}
+                selectedValue={selectedValue || "1"}
+                defaultSelectedCategoryValue=""
 
             >
                 <NavDrawerHeader>

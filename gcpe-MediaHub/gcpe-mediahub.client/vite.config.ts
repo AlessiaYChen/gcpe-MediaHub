@@ -23,7 +23,9 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    base: './public/src',
     plugins: [plugin()],
+    publicDir: 'public',
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -43,7 +45,7 @@ export default defineConfig({
             '^/api/requests': {
                 target: 'http://localhost:5020',
                 secure: false,
-                changeOrigin: true
+                changeOrigin: false
             }
         },
         port: 5173,

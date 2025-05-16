@@ -1,5 +1,6 @@
 
 import {
+    makeStyles,
     TableBody,
     TableCell,
     TableRow,
@@ -11,6 +12,19 @@ import {
     TagGroup,
 } from "@fluentui/react-components";
 
+import MediaContact from "../../models/mediaContact";
+import MediaOutlet from "../../models/mediaOutlet";
+
+const useStyles = makeStyles({
+    table: {
+        midWidth: "510px",
+        tableLayout: "auto",
+
+    },
+    tableHeader: {
+        fontWeight: "font-weight-bold",
+    }
+});
 
 const columns = [
     { columnKey: "name", label: "Name" },
@@ -24,10 +38,15 @@ const columns = [
 ];
 
 
-const ContactsTable = ({ items }: { items: Array<{ id: string; firstName: string; lastName: string; outlets: string[]; email: string; phone: string; location: string; requests: any[]; lastActive: string }> }) => {
-    console.log(items);
+interface ContactsTableProps {
+    items: MediaContact[];
+}
+
+const ContactsTable = ({ items }: ContactsTableProps) => {
+    const styles = useStyles();
+ //   console.log(items);
     return (
-        <Table arial-label="Default table" style={{ minWidth: "510px" }}>
+        <Table arial-label="Default table" className={styles.table}>
 
             <TableHeader>
                 <TableRow>
@@ -39,18 +58,18 @@ const ContactsTable = ({ items }: { items: Array<{ id: string; firstName: string
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {items.map((item: { id: string; firstName: string; lastName: string; outlets: string[]; email: string; phone: string; location: string; requests: any[]; lastActive: string }) => (
-                    <TableRow key={item.id}>
+                {items.map((item: MediaContact) => (
+                    <TableRow key={item.id.toString()}>
                         <TableCell>
                             <TableCellLayout>
                                 {item.firstName} {item.lastName}
                             </TableCellLayout>
                         </TableCell>
                         <TableCell>
-                            {item.outlets.map((outlet: string, index: number) => (
+                            {item.mediaOutlets.map((outlet: MediaOutlet, index: number) => (
                                 <TableCellLayout key={index}>
                                     <TagGroup>
-                                        <Tag shape="circular" appearance="outline"> {outlet} </Tag>
+                                        <Tag shape="circular" appearance="outline"> {outlet.name} </Tag>
                                     </TagGroup>
                                 </TableCellLayout>
                             ))}
@@ -74,16 +93,22 @@ const ContactsTable = ({ items }: { items: Array<{ id: string; firstName: string
                         </TableCell>
                         <TableCell>
                             <TableCellLayout>
-                                {item.requests.length > 0 &&
+                                {item.mediaRequests.length > 0 &&
                                     <TagGroup>
-                                        <Tag shape="circular" appearance="outline">{item.requests.length} active</Tag> 
+                                        <Tag shape="circular" appearance="outline">{item.mediaRequests.length} active</Tag>
                                     </TagGroup>
                                 }
                             </TableCellLayout>
                         </TableCell>
                         <TableCell>
                             <TableCellLayout>
-                                {item.lastActive}
+                                {item.lastActive.toLocaleDateString(undefined, {
+                                    day: "numeric",
+                                    month: "numeric",
+                                    year: "numeric",
+                                    hour: "2-digit",
+                                    minute: "2-digit"
+                                })}
                             </TableCellLayout>
                         </TableCell>
                     </TableRow>

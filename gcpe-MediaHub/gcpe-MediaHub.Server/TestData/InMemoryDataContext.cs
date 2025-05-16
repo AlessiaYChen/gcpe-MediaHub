@@ -2,26 +2,27 @@
 using System.IO;
 using Newtonsoft.Json;
 
+
 namespace gcpe_MediaHub.Server.TestData
 {
     public class InMemoryDataContext
     {
-        public List<MediaContact> MediaContacts { get; set; }
+        public IEnumerable<MediaContact> MediaContacts { get; set; }
         public List<MediaRequest> MediaRequests { get; set; }
         public List<MediaOutlet> MediaOutlets { get; set; }
         public List<ContactOutlet> ContactOutlets { get; set; }
 
         public InMemoryDataContext()
         {
-            MediaContacts = new List<MediaContact>();
+            //MediaContacts = IEnumerable<MediaContact>;
             MediaRequests = new List<MediaRequest>();
             MediaOutlets = new List<MediaOutlet>();
             ContactOutlets = new List<ContactOutlet>();
         }
 
-        public void SeedContactData(List<MediaContact> contacts)
+        public void SeedContactData(IEnumerable<MediaContact> contacts)
         {
-            MediaContacts.AddRange(contacts);
+            MediaContacts = (contacts);
         }
         public void SeedRequestData(List<MediaRequest> requests)
         {

@@ -28,7 +28,6 @@ yarn-error.log*
 
 # Backend folder
 backend/
-gcpe-MediaHub.Server/
 
 # OS files
 .DS_Store

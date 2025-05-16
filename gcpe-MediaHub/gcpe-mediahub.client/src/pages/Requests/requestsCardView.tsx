@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Input } from "@fluentui/react-components";
+import { Input, Button, TabList, Tab } from "@fluentui/react-components";
+import { Filter24Regular, Search24Regular } from "@fluentui/react-icons";
 import { useQuery } from "@tanstack/react-query";
 import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
 import { MediaRequest } from "../../api/apiClient";
@@ -8,6 +9,7 @@ import styles from "./requestsCardView.module.css";
 
 const RequestsCardView: React.FC = () => {
   const [globalFilter, setGlobalFilter] = useState("");
+  const [selectedTab, setSelectedTab] = useState("all");
   const { data: requests = [], isLoading, error } = useQuery<MediaRequest[], Error>({
     queryKey: ["requests"],
     queryFn: requestService.getRequests,
@@ -68,12 +70,41 @@ const RequestsCardView: React.FC = () => {
     <div className={styles.layoutWrapper}>
       <h1 className={styles.title}>Media Request</h1>
       <div className={styles.controls}>
+                <TabList selectedValue={selectedTab} onTabSelect={(_, data) => setSelectedTab(data.value as string)}>
+                    <Tab value="all">All</Tab>
+                </TabList>
+                <div className={styles.searchAndFilterContainer}>
+                    <Input
+                        contentBefore={<Search24Regular />}
+                        placeholder="Search requests"
+                        value={globalFilter}
+                        onChange={(_, data) => setGlobalFilter(data.value || "")}
+                        className={styles.searchInput}
+                    />
+                    <Button
+                        icon={<Filter24Regular />}
+                        appearance="outline"
+                        className={styles.filterButton}
+                    >
+                        Filter
+                    </Button>
+                </div>
+            </div>
+
+      <div className={styles.controls}>
         <Input
           placeholder="Search requests"
           className={styles.searchInput}
           value={globalFilter}
           onChange={(_, data) => setGlobalFilter(data.value || "")}
         />
+        <Button
+          icon={<Filter24Regular />}
+          appearance="outline"
+          className={styles.filterButton}
+        >
+          Filter
+        </Button>
       </div>
       <div className={styles.container}>
         {table.getRowModel().rows.map((row) => (

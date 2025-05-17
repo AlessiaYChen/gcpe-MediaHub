@@ -5,15 +5,21 @@ namespace gcpe_MediaHub.Server.Models
 {
     public class MediaContact
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         public string? FirstName { get; set; }
         [Required]
         public string? LastName { get; set; }
         [Required]
+        public bool IsPressGallery { get; set; }
+        [Required]
         public string? Email { get; set; }
         [Required]
         public string? Phone { get; set; }
+        public string? MobilePhone { get; set; }
+        public string? CallInPhone { get; set; }
+        public string? SocialMediaURL { get; set; }
         [Required]
         public string? Location { get; set; }
         public string[]? Outlets { get; set; }

@@ -34,14 +34,15 @@ namespace gcpe_MediaHub.Server.Models
         [Required]
         public String? LeadMinistry { get; set; } // Todo: this should be a foreign relation to an Organization entity
         public String? SharedWith { get; set; } // TODO: this should be a collection of Organization entities.
-        public MediaRequest(string title, string status, string deadline, int requestedBy) 
-        { 
-            Title = title;
-            if (!Statuses.Values.Contains(status))
-                throw new Exception($"there is no status with the value \"{status}\"");
-            this.status = Statuses.FirstOrDefault(x => x.Value == status).Key;
-            Deadline = "Today 1:00PM"; // deadline;
-            RequestedBy = requestedBy;  
-        }
+        public String? Resolution { get; set; } 
+        //public MediaRequest(string title, string status, string deadline, int requestedBy) 
+        //{ 
+        //    Title = title;
+        //    if (!Statuses.Values.Contains(status))
+        //        throw new Exception($"there is no status with the value \"{status}\"");
+        // //   this.status = Statuses.FirstOrDefault(x => x.Value == status).Key;
+        //    Deadline = "Today 1:00PM"; // deadline;
+        //    RequestedBy = requestedBy;  
+        //}
     }
 }

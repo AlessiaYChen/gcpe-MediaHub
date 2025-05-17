@@ -1,0 +1,56 @@
+[
+  {
+    "Id": "REQ-00001",
+    "Title": "Budget Announcement Coverage",
+    "status": "New",
+    "Deadline": "Today 1:00PM", // TODO: make these proper DateTimes
+    "LeadMinistry": "HLTH", // TODO: We need an organization entity model, these should be foreign relations
+    "SharedWith": "ENV", // DITTO
+    "RequestedBy": "1"
+  },
+  {
+    "Id": "REQ-00002",
+    "Title": "Interview With Health Minister",
+    "status": "New",
+    "Deadline": "Today 1:00PM",
+    "LeadMinistry": "CITZ",
+    "SharedWith": "PREM",
+    "RequestedBy": "2"
+  },
+  {
+    "Id": "REQ-00003",
+    "Title": "Follow-up on Housing Stats",
+    "status": "New",
+    "Deadline": "Today 1:00PM",
+    "LeadMinistry": "HLTH",
+    "SharedWith": "PREM, GCPE",
+    "RequestedBy": "3"
+  },
+  {
+    "Id": "REQ-00004",
+    "Title": "Request for Photos - Forestry",
+    "status": "New",
+    "Deadline": "Today 1:00PM",
+    "LeadMinistry": "FOR",
+    "SharedWith": "GCPE",
+    "RequestedBy": "4"
+  },
+  {
+    "Id": "REQ-00005",
+    "Title": "Emergency Response Inquiry",
+    "status": "New",
+    "Deadline": "Today 1:00PM",
+    "LeadMinistry": "FIN",
+    "SharedWith": "",
+    "RequestedBy": "2"
+  },
+  {
+    "Id": "REQ-00006",
+    "Title": "Minister's Speach on Economy",
+    "status": "New",
+    "Deadline": "Today 1:00PM",
+    "LeadMinistry": "ENV",
+    "SharedWith":  "PREM",
+    "RequestedBy": "1"
+  }
+]

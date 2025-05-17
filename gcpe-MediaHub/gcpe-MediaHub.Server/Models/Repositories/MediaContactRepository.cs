@@ -15,5 +15,6 @@ namespace gcpe_MediaHub.Server.Models.Repositories
         {
             return _context.MediaContacts;
         }
+
     }
 }
